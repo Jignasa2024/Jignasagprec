@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLearn - NLP Chapter 1: Introduction</title>
+    <style>
+        body {font-family: Arial, sans-serif; margin: 0; padding: 0;}
+        header {background-color: #335c67; color: white; padding: 20px; text-align: center;}
+        nav {background-color: #e09f3e; display: flex; justify-content: center; flex-wrap: wrap;}
+        nav a {color: white; padding: 14px 20px; text-decoration: none; display: block;}
+        nav a:hover {background-color: #9e2a2b;}
+        .content {padding: 20px; line-height: 1.6;}
+        h1, h2, h3 {color: #335c67;}
+        footer {background-color: #540b0e; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%;}
+	table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #335c67;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+@media screen and (max-width: 600px) {
+            .nav-links {flex-direction: column; display: none; width: 100%;}
+            nav a, .dropdown-content a {width: 100%; text-align: center;}
+            .dropdown-content {position: static;}
+            .menu-toggle {display: block;}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>EduLearn - NLP Chapter 1</h1>
+    <p>Introduction to Natural Language Processing</p>
+</header>
+
+<nav>
+    <a href="home.html">Home</a>
+    <a href="nlp.html">Courses</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="content">
+    <h2>Natural Language</h2>
+    <p>In neuropsychology, linguistics, and the philosophy of language, a natural language or ordinary language is any language that has evolved naturally in humans through use and repetition without conscious planning or premeditation.</p>
+    <p>In contrast to artificial languages like Python, C, Java, etc., natural languages like English, Portuguese, French, etc., have evolved over time and use and it’s difficult to express them in strict formal rules.</p>
+
+    <h3>Definition of NLP</h3>
+    <p>Natural Language Processing (NLP) is a branch of Artificial Intelligence (AI) and computational linguistics that focuses on the interaction between computers and humans through natural language. The goal of NLP is to enable machines to read, understand, and derive meaning from human language in a way that is both syntactically and semantically correct.</p>
+    <blockquote>
+        Formal Definition: “Natural Language Processing is a computational technique for the automatic analysis and representation of human language to perform useful tasks such as translation, summarization, sentiment analysis, and question answering.”
+    </blockquote>
+    <p>NLP combines linguistics (syntax, semantics, pragmatics), machine learning, and deep learning to enable various tasks involving text and speech.</p>
+    <p>Understanding natural language is informally considered as AI-hard/AI-complete by several researchers.</p>
+
+    <h3>Why is NLP hard?</h3>
+    <p>NLP is hard because natural languages evolved without a standard rule or logic. They were developed in response to the evolution of the human brain — in its ability to understand signs, voice, and memory. With NLP, we are now trying to “discover rules” for something (language) that evolved without rules.</p>
+    <p>Let us now try to understand why NLP is considered hard using a few examples:</p>
+    <ul>
+        <li><strong>"There was not a single man at the party"</strong><br>— Does it mean that there were no men at the party?<br>— Or that there was no one at the party?<br>— Does "man" refer to gender or mankind?</li>
+        <li><strong>"The chicken is ready to eat"</strong><br>— Is the bird ready to eat food?<br>— Or is the chicken cooked and ready to be eaten?</li>
+        <li><strong>"Google is a great company." vs. "Google this word and find its meaning."</strong><br>— "Google" is a noun in the first and a verb in the second.</li>
+        <li><strong>"The man saw a girl with a telescope."</strong><br>— Did the man use a telescope to see the girl?<br>— Or did the girl have the telescope?</li>
+    </ul>
+    <p>Natural language is full of ambiguities. Ambiguity refers to the potential for multiple interpretations. This, along with extracting knowledge from unstructured data, makes NLP a hard problem.</p>
+
+    <h3>Applications of NLP</h3>
+    <p>NLP is a foundational component in many modern-day applications across industries. Below are key areas where NLP plays a central role:</p>
+    <ul>
+        <li><strong>Information Retrieval (IR)</strong><br>• Search engines like Google use NLP techniques to understand queries and rank results.<br>• Query expansion, spell correction, and relevance prediction rely on language models.</li>
+        <li><strong>Machine Translation</strong><br>• Converting text from one language to another using systems like Google Translate or DeepL.<br>• Advanced systems use sequence-to-sequence models and transformers.</li>
+        <li><strong>Chatbots and Virtual Assistants</strong><br>• NLP powers voice-based assistants like Siri, Alexa, and Google Assistant.<br>• Handles natural language understanding (NLU) and generation (NLG).</li>
+        <li><strong>Text Classification</strong><br>• Assigns labels to text (e.g., spam vs. non-spam, positive vs. negative sentiment).<br>• Used in email filtering, product reviews, and social media monitoring.</li>
+        <li><strong>Named Entity Recognition (NER)</strong><br>• Identifies entities such as names, dates, organizations in text.<br>• Used in financial analytics, legal tech, and medical record analysis.</li>
+        <li><strong>Speech Technologies</strong><br>• Speech-to-Text (STT): Converts spoken language into text.<br>• Text-to-Speech (TTS): Synthesizes speech from written text.</li>
+        <li><strong>Text Summarization</strong><br>• Reduces long documents into concise summaries.<br>• Used in news apps, legal document summarization, and academic research tools.</li>
+        <li><strong>Question Answering</strong><br>• Systems like ChatGPT, BERT-based models can answer open-domain or specific questions.<br>• Applied in search, virtual tutors, and helpdesk automation.</li>
+    </ul>
+
+    <h3>Challenges in NLP</h3>
+    <p>While NLP has seen significant progress, it still faces numerous challenges due to the complexities of human language:</p>
+
+    <h4>a. Ambiguity</h4>
+    <p><strong>1. Lexical Ambiguity:</strong> Occurs when a word has multiple meanings depending on the context.<br>
+    Examples:
+    <ul>
+        <li>“Bat” → Could refer to a flying mammal or a cricket bat.</li>
+        <li>“Bank” → Can imply a financial institution or the side of a river.</li>
+    </ul></p>
+
+    <p><strong>2. Syntactic Ambiguity:</strong> Arises when a sentence's structure allows for multiple grammatical interpretations.<br>
+    Example:
+    <ul>
+        <li>“He saw the man with the telescope.”<br>
+        — He used a telescope to see the man.<br>
+        — He saw a man who was holding a telescope.</li>
+    </ul></p>
+
+    <p><strong>3. Semantic Ambiguity:</strong> Pertains to multiple interpretations of sentence meaning even when grammar is clear.<br>
+    Example:
+    <ul>
+        <li>“Visiting relatives can be boring.”<br>
+        — Relatives who visit are boring?<br>
+        — The act of visiting relatives is boring?</li>
+    </ul>
+    <strong>Solutions:</strong> Disambiguation techniques using contextual embeddings (e.g., BERT), sense disambiguation models, and semantic parsing aim to resolve such ambiguities.</p>
+
+    <h4>b. Context Understanding</h4>
+    <p>Human language is profoundly context-sensitive. Successful language understanding requires:</p>
+    <ul>
+        <li>World Knowledge: Understanding common-sense facts and cultural references.</li>
+        <li>Co-reference Resolution: Linking pronouns to entities, e.g., in "John gave Mark his book", whose book is it?</li>
+        <li>Sarcasm and Irony Detection: Recognizing when the literal meaning is opposite to the intended meaning.</li>
+        <li>Discourse Analysis: Understanding relations between sentences to capture narrative flow or argument structure.</li>
+    </ul>
+    <p><strong>Solutions:</strong> Incorporation of knowledge graphs (e.g., ConceptNet), discourse-aware transformers, and pragmatic analysis models.</p>
+
+    <h4>c. Language Diversity</h4>
+    <p>The global linguistic landscape is highly diverse:</p>
+    <ul>
+        <li>Syntax and Grammar Variance: Languages differ in sentence construction, such as SVO (English) vs. SOV (Japanese).</li>
+        <li>Writing Systems: Varieties include alphabetic (English), logographic (Chinese), and abjad (Arabic) scripts.</li>
+        <li>Morphologically Rich Languages: Languages like Finnish, Turkish, and Hungarian exhibit complex word inflections.</li>
+    </ul>
+    <p><strong>Solutions:</strong> Multilingual models (XLM-R, mBERT), language-specific tokenizers.</p>
+
+    <h4>d. Informal and Code-Mixed Text</h4>
+    <p>Modern communication, especially on social media, is:</p>
+    <ul>
+        <li>Informal: Slang, abbreviations, typos, emojis.</li>
+        <li>Code-Mixed: Mixing multiple languages, e.g., “I’ll call you after puja at the mandir.”</li>
+    </ul>
+    <p><strong>Normalization Techniques:</strong> Slang & emoji preprocessing, transliteration, data augmentation, transfer learning.</p>
+
+    <h4>e. Low-Resource Languages</h4>
+    <p>Many languages lack annotated corpora and linguistic tools.</p>
+    <p><strong>Solutions:</strong> Transfer learning, zero-shot/few-shot learning, initiatives like Meta’s NLLB.</p>
+
+    <h4>f. Bias and Fairness</h4>
+    <p>NLP models can inherit gender, racial, or cultural biases from training data.</p>
+    <ul>
+        <li>Gender Bias: "doctor - he", "nurse - she".</li>
+        <li>Racial/Cultural Bias: Stereotypical or offensive outputs.</li>
+    </ul>
+    <p><strong>Ethical Imperatives:</strong> Debiasing techniques, audits, fairness metrics, ethical AI frameworks.</p>
+
+    <h4>g. Computational Requirements</h4>
+    <p>Deep NLP models require:</p>
+    <ul>
+        <li>High computational power (GPUs/TPUs)</li>
+        <li>Energy-intensive training</li>
+        <li>Low-latency inference needs</li>
+    </ul>
+    <p><strong>Solutions:</strong> Model compression, knowledge distillation (e.g., DistilBERT), efficient transformers (Longformer, TinyBERT).</p>
+
+
+    <h4>Challenge Summary Table</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Challenge</th>
+                <th>Impact</th>
+                <th>Research Directions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ambiguity</td>
+                <td>Multiple meanings impede clarity</td>
+                <td>Contextual embeddings, WSD models</td>
+            </tr>
+            <tr>
+                <td>Context Understanding</td>
+                <td>Requires deep comprehension</td>
+                <td>Discourse models, Co-reference tools</td>
+            </tr>
+            <tr>
+                <td>Language Diversity</td>
+                <td>Complexity in syntax & morphology</td>
+                <td>Multilingual models, tokenization</td>
+            </tr>
+            <tr>
+                <td>Informal Text</td>
+                <td>Non-standard language processing</td>
+                <td>Normalization, code-mixing handling</td>
+            </tr>
+            <tr>
+                <td>Low-Resource Languages</td>
+                <td>Lack of tools for many languages</td>
+                <td>Transfer & Few-shot learning</td>
+            </tr>
+            <tr>
+                <td>Bias & Fairness</td>
+                <td>Ethical risks in outputs</td>
+                <td>Debiasing, fairness constraints</td>
+            </tr>
+            <tr>
+                <td>Computational Costs</td>
+                <td>Resource-heavy models</td>
+                <td>Efficient modeling, distillation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Summary</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Definition</td>
+                <td>NLP is the study of enabling machines to process and understand human language.</td>
+            </tr>
+            <tr>
+                <td>Applications</td>
+                <td>Encompasses MT, chatbots, sentiment analysis, IR, summarization, etc.</td>
+            </tr>
+            <tr>
+                <td>Challenges</td>
+                <td>Includes ambiguity, context, multilingualism, data scarcity, bias, and compute costs</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>NLP Pipeline</h3>
+    <p>Before we start developing the applications let us review the sequence of steps that we typically go through while developing NLP applications.</p>
+    <p>The NLP Pipeline refers to a systematic sequence of processes through which raw, unstructured textual data is transformed into actionable insights, predictions, or automated responses using computational models. Each stage of the pipeline plays a crucial role in ensuring that the final model or system is both accurate and efficient.</p>
+
+    <h4>Collecting Textual Data</h4>
+    <ul>
+        <li><strong>Sources of Data:</strong>
+            <ul>
+                <li>Web scraping (blogs, news articles, forums)</li>
+                <li>Social media platforms (tweets, posts)</li>
+                <li>Internal organizational data (emails, customer feedback, chat logs)</li>
+                <li>Public datasets (corpora, linguistic datasets like Wikipedia, SQuAD, etc.)</li>
+            </ul>
+        </li>
+        <li><strong>Importance:</strong>
+            <ul>
+                <li>The quantity and quality of data directly affect the model's performance.</li>
+                <li>Data relevance must align with the domain-specific requirements.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>Cleaning the Input Text Data</h4>
+    <p>We use various techniques to clean the data, depending on the domain of the problem. Regular expressions are extensively used at this stage in identifying anomalies in the data and transforming them as required.</p>
+    <ul>
+        <li>Typos, HTML tags</li>
+        <li>Special symbols, URLs</li>
+        <li>Irregularities like non-UTF-8 characters</li>
+    </ul>
+    <p><strong>Techniques Used:</strong></p>
+    <ul>
+        <li>Regular Expressions (regex)</li>
+        <li>Noise Removal</li>
+        <li>Lowercasing</li>
+        <li>Handling missing data</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre>Raw: "Congrats!!! You won $1000. Click http://spamlink.com now!! 🎉🎉"
+Cleaned: "congrats you won 1000 click now"</pre>
+
+    <h4>Normalizing the Data</h4>
+    <ul>
+        <li>Stopword Removal</li>
+        <li>Stemming</li>
+        <li>Lemmatization</li>
+        <li>Case Normalization</li>
+    </ul>
+    <p><strong>Purpose:</strong> These steps reduce the dimensionality of data and help focus on meaningful terms that contribute to model learning.</p>
+
+    <h4>Feature Engineering</h4>
+    <p>Feature engineering textual data typically involves converting the cleaned and normalized data into vector representations.</p>
+    <ul>
+        <li>Bag of Words (BoW)</li>
+        <li>TF-IDF</li>
+        <li>Word Embeddings (Word2Vec, GloVe, FastText)</li>
+        <li>Contextual Embeddings (BERT)</li>
+    </ul>
+
+    <h4>Apply Machine Learning Techniques to Build Models</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Suitable Models/Techniques</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Text Classification</td>
+                <td>Naive Bayes, Decision Trees, SVM, Random Forest</td>
+            </tr>
+            <tr>
+                <td>Sequence Labeling</td>
+                <td>HMMs, CRFs, LSTMs, BiLSTM</td>
+            </tr>
+            <tr>
+                <td>Language Modeling</td>
+                <td>N-grams, RNNs, Transformers (GPT, BERT)</td>
+            </tr>
+            <tr>
+                <td>Sentiment Analysis</td>
+                <td>Logistic Regression, Neural Networks</td>
+            </tr>
+            <tr>
+                <td>Text Generation</td>
+                <td>LSTMs, GPT models</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Validating the Model Built</h4>
+    <ul>
+        <li>Train-Test Split</li>
+        <li>Cross-Validation</li>
+        <li>Metrics: Accuracy, Precision, Recall, F1-Score, ROC-AUC, Confusion Matrix</li>
+    </ul>
+
+    <h4>Deploying the Model and Making Predictions</h4>
+    <ul>
+        <li>APIs for prediction</li>
+        <li>Integrated systems (chatbots, recommendation engines)</li>
+    </ul>
+    <p><strong>Monitoring:</strong> Watch for performance degradation, bias, and fairness post-deployment.</p>
+
+    <h4>Summary of NLP Pipeline</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Collecting Data</td>
+                <td>Source relevant text data</td>
+            </tr>
+            <tr>
+                <td>Cleaning Text</td>
+                <td>Remove noise and irrelevant elements</td>
+            </tr>
+            <tr>
+                <td>Normalization</td>
+                <td>Standardize text (stemming, stopword removal)</td>
+            </tr>
+            <tr>
+                <td>Feature Engineering</td>
+                <td>Convert text to numerical format</td>
+            </tr>
+            <tr>
+                <td>ML Model Building</td>
+                <td>Train using appropriate algorithms</td>
+            </tr>
+            <tr>
+                <td>Model Validation</td>
+                <td>Evaluate model on unseen data</td>
+            </tr>
+            <tr>
+                <td>Deployment & Inference</td>
+                <td>Make predictions in real-time systems</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Linguistic Essentials: Syntax, Semantics, Pragmatics</h3>
+    <p>Understanding language from a linguistic perspective is essential for designing NLP systems that can effectively process, interpret, and generate human-like language. Linguistics offers structured frameworks to model language across three primary layers:</p>
+    <ol>
+        <li>Syntax – The structure and arrangement of words in sentences</li>
+        <li>Semantics – The meaning conveyed by words, phrases, and sentences</li>
+        <li>Pragmatics – The influence of context, intent, and social norms on meaning</li>
+    </ol>
+
+    <h4>Syntax – Structure of Language</h4>
+    <p>Syntax refers to the set of rules, principles, and processes that govern the structure of sentences in a given language. It determines how words combine to form grammatically correct sentences.</p>
+    <ul>
+        <li>Helps parse and validate sentence structure</li>
+        <li>Enables syntax trees or dependency parsing</li>
+        <li>Parsing: Analyzing the grammatical structure of sentences.</li>
+        <li>Understanding sentence components: Such as subject, verb, object.</li>
+        <li>Supporting tasks like: Machine translation, grammar checking, and information extraction.</li>
+    </ul>
+    <p><strong>Syntactic Representations:</strong></p>
+    <ul>
+        <li>Constituency Parsing: Breaks sentences into nested sub-phrases.</li>
+        <li>Dependency Parsing: Captures relationships between "head" words and their dependents.</li>
+    </ul>
+    <p><strong>Example:</strong> Sentence: “The cat sat on the mat.” → [NP The cat] [VP sat [PP on [NP the mat]]]</p>
+
+    <p><strong>NLP Tasks Involving Syntax:</strong></p>
+    <ul>
+        <li>Part-of-Speech (POS) Tagging</li>
+        <li>Constituency Parsing</li>
+        <li>Dependency Parsing</li>
+        <li>Grammar Correction Tools (e.g., Grammarly)</li>
+    </ul>
+
+    <h4>Semantics – Meaning of Language</h4>
+    <p>Semantics is the study of meaning in language—how individual words, phrases, and sentences convey meaning.</p>
+    <ul>
+        <li>Used to build systems that understand, infer, and represent meaning</li>
+        <li>Helps resolve ambiguity and build word representations</li>
+    </ul>
+    <p><strong>Example:</strong> “The bank is closed today.” – Semantic disambiguation helps determine if “bank” is a financial institution or a riverbank.</p>
+
+    <p><strong>Key NLP Tasks Involving Semantics:</strong></p>
+    <ul>
+        <li>Word Sense Disambiguation (WSD)</li>
+        <li>Named Entity Recognition (NER)</li>
+        <li>Semantic Role Labeling (SRL)</li>
+        <li>Word Embeddings (Word2Vec, GloVe, FastText)</li>
+        <li>Textual Entailment</li>
+        <li>Semantic Parsing</li>
+    </ul>
+
+    <h4>Pragmatics – Context of Language</h4>
+    <p>Pragmatics deals with the contextual and situational meaning of language. It explains how the interpretation of sentences can change based on speaker intent, cultural norms, and context.</p>
+    <ul>
+        <li>Important in dialogue systems, chatbots, and co-reference resolution</li>
+        <li>Helps in understanding indirect speech acts, sarcasm, and implicature</li>
+    </ul>
+    <p><strong>Example:</strong> “Can you pass the salt?” – Syntactically a question; pragmatically a request.</p>
+
+    <p><strong>NLP Tasks Involving Pragmatics:</strong></p>
+    <ul>
+        <li>Dialogue and Conversational Modeling</li>
+        <li>Co-reference Resolution</li>
+        <li>Sentiment and Sarcasm Detection</li>
+        <li>Contextual Question Answering</li>
+    </ul>
+
+    <h4>Comparative Summary</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Aspect</th>
+                <th>Syntax</th>
+                <th>Semantics</th>
+                <th>Pragmatics</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Focus</td>
+                <td>Sentence structure</td>
+                <td>Meaning of words/sentences</td>
+                <td>Meaning in context</td>
+            </tr>
+            <tr>
+                <td>Example</td>
+                <td>Grammar rules (NP → Det + Noun)</td>
+                <td>“Bank” = financial institution?</td>
+                <td>“Can you pass the salt?” = Request</td>
+            </tr>
+            <tr>
+                <td>NLP Use</td>
+                <td>POS tagging, Parsing</td>
+                <td>NER, Word Embeddings, SRL</td>
+                <td>Dialogue systems, Sentiment, QA</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Text Processing in NLP</h2>
+    <p>Text is a collection of meaningful sentences. Each sentence in turn comprises many words.</p>
+    <p>Consider the text "India is a republic nation. We are proud Indians". This text contains 2 sentences and 9 words.</p>
+    <pre><code>import nltk
+from nltk import *
+text = "India is a republic country. We are proud Indians"
+print(nltk.word_tokenize(text)) 
+# Output: ['India', 'is', 'a', 'republic', 'country', '.', 'We', 'are', 'proud', 'Indians']
+
+# Vocabulary
+tokens = nltk.word_tokenize(text)
+vocab = sorted(set(tokens))
+print(vocab)
+# Output: ['.', 'India', 'Indians', 'We', 'a', 'are', 'country', 'is', 'proud', 'republic']
+
+# Punctuation
+from string import punctuation
+vocab_wo_punct = [i for i in vocab if i not in punctuation]
+print(vocab_wo_punct)
+# Output: ['India', 'Indians', 'We', 'a', 'are', 'country', 'is', 'proud', 'republic']</code></pre>
+
+    <h3>1. Tokenization</h3>
+    <p>Tokenization is the process of splitting text into smaller units, known as tokens. These tokens may be words, subwords, or sentences.</p>
+    <p><strong>Example:</strong><br>
+    Input: "NLP is fun!"<br>
+    Output Tokens: ["NLP", "is", "fun", "!"]</p>
+    <p><strong>Use in NLP:</strong></p>
+    <ul>
+        <li>Input for all downstream tasks</li>
+        <li>Helps in vocabulary creation</li>
+        <li>Used in both traditional models and deep learning pipelines</li>
+    </ul>
+
+    <h3>2. Lemmatization</h3>
+    <p>Lemmatization reduces words to their base or dictionary form (lemma) using morphological analysis.</p>
+    <p><strong>Example:</strong><br>
+    Words: “running”, “ran”, “runs” → Lemma: “run”</p>
+    <p><strong>Use in NLP:</strong></p>
+    <ul>
+        <li>Preserves word meaning</li>
+        <li>Important for semantic analysis</li>
+        <li>Used in search engines, question answering</li>
+    </ul>
+    <pre><code>from nltk.stem.wordnet import WordNetLemmatizer
+lemmaObj = WordNetLemmatizer()
+print(lemmaObj.lemmatize("went", pos='v'))
+# Output: go</code></pre>
+
+
+<h3>3. Stemming</h3>
+<p>Stemming cuts off affixes from words to get the root form. It’s a heuristic-based approach and often less accurate than lemmatization.</p>
+<p><strong>Example:</strong><br>
+“connected”, “connecting”, “connection” → Stem: “connect”</p>
+<p><strong>Use in NLP:</strong></p>
+<ul>
+  <li>Faster preprocessing</li>
+  <li>Useful in IR systems and early search algorithms</li>
+  <li>May produce non-dictionary words (e.g., “studies” → “studi”)</li>
+</ul>
+<pre><code>from nltk.stem.snowball import SnowballStemmer
+stemObj = SnowballStemmer("english")
+stemObj.stem("Studying") #Prints 'studi'
+
+stemmed_vocab=[]
+stemObj = SnowballStemmer("english")
+for i in vocab_wo_punct:
+    stemmed_vocab.append(stemObj.stem(i))
+print(stemmed_vocab) #Prints ['india', 'indian', 'we', 'a', 'are', 'countri', 'is', 'proud', 'republ']
+</code></pre>
+
+<h3>4. Stop Word Removal</h3>
+<p>Stop words are commonly used words (e.g., “the”, “is”, “and”) that carry little semantic value and are often removed from text.</p>
+<p><strong>Example:</strong><br>
+“The sun rises in the east.” → [“sun”, “rises”, “east”]</p>
+<p><strong>Use in NLP:</strong></p>
+<ul>
+  <li>Reduces dimensionality</li>
+  <li>Improves performance in tasks like classification and clustering</li>
+</ul>
+<p>NLTK provides a pre-defined set of stopwords for English, as shown</p>
+<pre><code>from nltk.corpus import stopwords
+wo_stop_words = []
+stop_words_set = set(stopwords.words("english"))
+for i in vocab_wo_punct:
+    if i not in stop_words_set:
+        wo_stop_words.append(i)
+print(wo_stop_words) #Prints ['India', 'Indians', 'We', 'country', 'proud', 'republic']
+</code></pre>
+
+<h3>5. Normalization</h3>
+<p>Normalization standardizes text by converting it to a consistent format, often as part of noise removal.</p>
+<p><strong>Techniques:</strong></p>
+<ul>
+  <li>Lowercasing: “Apple” → “apple”</li>
+  <li>Removing punctuation: “What’s up?” → “Whats up”</li>
+  <li>Handling special characters and spelling corrections</li>
+</ul>
+<p><strong>Use in NLP:</strong></p>
+<ul>
+  <li>Improves model generalization</li>
+  <li>Essential for social media and OCR-generated text</li>
+</ul>
+
+
+
+<h3>6. N-gram Generation</h3>
+<p>N-grams are contiguous sequences of n items (typically words) from a text. They capture context and word co-occurrence.</p>
+<p>In many applications of text analysis, tokens are not treated individually but based on how they occur together. For example, systems that automatically predict the word that you are going to type next need to look at tokens that are commonly used with one another.</p>
+<p><strong>Examples:</strong><br/>
+Sentence: “I love NLP”<br/>
+Bigrams (2-grams): (“I love”, “love NLP”)</p>
+<p><strong>Use in NLP:</strong></p>
+<ul>
+<li>Language modeling</li>
+<li>Text classification and information retrieval</li>
+<li>Feature extraction for ML models</li>
+</ul>
+<pre><code>Sentence= "I love NLP"
+Sentence=nltk.word_tokenize(Sentence)
+
+#bigrams
+bigrams = ngrams(Sentence,2)
+# print(list(bigrams))
+[('I', 'love'), ('love', 'NLP')]
+</code></pre>
+<h3>7. Part-of-Speech (POS) Tagging</h3>
+<p>POS tagging assigns grammatical categories (e.g., noun, verb, adjective) to each word in a sentence.</p>
+<p><strong>Example:</strong><br/>
+Sentence: “She is reading a book.”<br/>
+Tags: [“She/PRON”, “is/VERB”, “reading/VERB”, “a/DET”, “book/NOUN”]</p>
+<p><strong>Use in NLP:</strong></p>
+<ul>
+<li>Syntax analysis</li>
+<li>Named Entity Recognition</li>
+<li>Dependency parsing and semantic role labelling</li>
+</ul>
+<p>Part of speech (POS) refers to the category to which a word is assigned based on its function. You may recall that the English language has 8 parts of speech - noun, verb, adjective, adverb, pronoun, determiner, preposition, conjunction, and interjection.</p>
+<p>The below code demonstrates POS tagging on text:</p>
+<pre><code>from string import punctuation
+Sentence="She is reading a book."
+#Tokenization using word tokenizer
+tokenized_list = word_tokenize(Sentence)
+# print(tokenized_list)
+#Tokenization using word punct tokenizer
+punct_tokenized_list = wordpunct_tokenize(Sentence)
+print(punct_tokenized_list)
+WL=[]
+for w in punct_tokenized_list:
+    if w not in punctuation:
+        WL.append(w)
+print(WL)
+
+from nltk import pos_tag
+pos_list = pos_tag(WL)
+print(pos_list)
+['She', 'is', 'reading', 'a', 'book', '.']
+['She', 'is', 'reading', 'a', 'book']
+[('She', 'PRP'), ('is', 'VBZ'), ('reading', 'VBG'), ('a', 'DT'), ('book', 'NN')]
+</code></pre>
+<h3>8. Named Entity Recognition (NER)</h3>
+<p>NER identifies and classifies named entities such as persons, organizations, dates, locations, etc., from text.</p>
+<p><strong>Example:</strong><br/>
+Sentence: “Google was founded in California in 1998.”<br/>
+Entities: [“Google” → ORG, “California” → LOC, “1998” → DATE]</p>
+<p><strong>Use in NLP:</strong></p>
+<ul>
+<li>Information extraction</li>
+<li>Search engines and recommender systems</li>
+<li>Finance, legal, and healthcare document analysis</li>
+</ul>
+<h3>Summary Table</h3>
+<table border="1">
+<tr><th>Technique</th><th>Purpose</th><th>Example</th></tr>
+<tr><td>Tokenization</td><td>Breaks text into words/subwords</td><td>“NLP is fun” → [“NLP”, “is”, “fun”]</td></tr>
+<tr><td>Lemmatization</td><td>Gets base form using grammar rules</td><td>“running” → “run”</td></tr>
+<tr><td>Stemming</td><td>Truncates suffixes</td><td>“connection” → “connect”</td></tr>
+<tr><td>Stop word removal</td><td>Eliminates common, non-informative words</td><td>“the”, “is”, “a”</td></tr>
+<tr><td>Normalization</td><td>Standardizes text formatting</td><td>“I’m” → “I am”, “HELLO” → “hello”</td></tr>
+<tr><td>N-grams</td><td>Captures co-occurrence patterns</td><td>Bigrams: “machine learning”</td></tr>
+<tr><td>POS Tagging</td><td>Tags words with grammatical roles</td><td>“play” → Verb or Noun</td></tr>
+<tr><td>NER</td><td>Extracts named entities</td><td>“India” → LOC, “2024” → DATE</td></tr>
+</table>
+
+
+
+  <h2>NLP Libraries: NLTK and SpaCy Overview</h2>
+  <p>Natural Language Processing tasks can be complex, involving tokenization, tagging, parsing, and more. To simplify these, developers and researchers use specialized NLP libraries that provide ready-to-use tools and models. Two of the most popular open-source libraries in Python are NLTK and SpaCy.</p>
+
+  <h3>1. What are NLP Libraries?</h3>
+  <p>NLP libraries are frameworks or toolkits that provide pre-built methods for various natural language processing tasks such as:</p>
+  <ul>
+    <li>Tokenization</li>
+    <li>POS Tagging</li>
+    <li>Lemmatization/Stemming</li>
+    <li>Named Entity Recognition</li>
+    <li>Text Classification</li>
+    <li>Language Modeling</li>
+  </ul>
+  <p>These libraries abstract the underlying complexity, enabling faster development and experimentation in NLP.</p>
+
+  <h3>2. NLTK – Natural Language Toolkit</h3>
+  <p><strong>Overview:</strong></p>
+  <ul>
+    <li>NLTK is one of the oldest and most comprehensive NLP libraries in Python.</li>
+    <li>Designed for education and research.</li>
+    <li>Offers access to corpora, lexical resources (like WordNet), and statistical NLP tools.</li>
+  </ul>
+
+  <p><strong>Features:</strong></p>
+  <ul>
+    <li>Word and sentence tokenization</li>
+    <li>POS tagging and chunking</li>
+    <li>Named Entity Recognition (NER)</li>
+    <li>Stemming and Lemmatization</li>
+    <li>Parsing (CFGs, Treebanks)</li>
+    <li>Built-in corpora (e.g., Brown, Gutenberg)</li>
+    <li>Interface with WordNet for semantic processing</li>
+  </ul>
+
+  <p><strong>Example Usage:</strong></p>
+  <pre><code>import nltk
+from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+text = "Natural Language Processing with NLTK."
+tokens = word_tokenize(text)
+print(tokens)</code></pre>
+
+  <p><strong>Strengths:</strong></p>
+  <ul>
+    <li>Great for learning NLP fundamentals</li>
+    <li>Includes educational datasets and lexical resources</li>
+    <li>Good for rule-based NLP tasks and grammar exploration</li>
+  </ul>
+
+  <p><strong>Limitations:</strong></p>
+  <ul>
+    <li>Slower and less scalable for production use</li>
+    <li>Lacks built-in support for GPU-based models or modern deep learning</li>
+  </ul>
+
+
+    <h3>3. SpaCy – Industrial-strength NLP</h3>
+    <p><strong>Overview:</strong></p>
+    <ul>
+        <li>SpaCy is a modern NLP library focused on performance, speed, and scalability.</li>
+        <li>Built with Cython for speed.</li>
+        <li>Designed for real-world applications and production deployment.</li>
+    </ul>
+    <p><strong>Features:</strong></p>
+    <ul>
+        <li>Tokenization and lemmatization</li>
+        <li>POS tagging and dependency parsing</li>
+        <li>Named Entity Recognition (NER)</li>
+        <li>Pre-trained models for multiple languages</li>
+        <li>Easy integration with deep learning frameworks like TensorFlow and PyTorch</li>
+        <li>Efficient pipeline management (custom components)</li>
+    </ul>
+    <p><strong>Example Usage:</strong></p>
+    <pre><code>import spacy
+nlp = spacy.load("en_core_web_sm")
+doc = nlp("SpaCy is great for fast NLP pipelines.")
+for token in doc:
+    print(token.text, token.pos_, token.lemma_)</code></pre>
+
+    <p><strong>Strengths:</strong></p>
+    <ul>
+        <li>Fast and efficient; suitable for large-scale NLP tasks</li>
+        <li>Easy to customize pipelines and add new models</li>
+        <li>Compatible with modern deep learning architectures</li>
+        <li>Good visualization tools (displacy for dependency parsing and NER)</li>
+    </ul>
+
+    <p><strong>Limitations:</strong></p>
+    <ul>
+        <li>Less educational (less focus on theory or syntax trees)</li>
+        <li>Smaller built-in corpora compared to NLTK</li>
+    </ul>
+
+    <h3>Comparative Summary: NLTK vs SpaCy</h3>
+    <table>
+        <tr><th>Feature</th><th>NLTK</th><th>SpaCy</th></tr>
+        <tr><td>Focus</td><td>Education, research</td><td>Production, speed, scalability</td></tr>
+        <tr><td>Tokenization</td><td>Yes</td><td>Yes (faster and more accurate)</td></tr>
+        <tr><td>POS Tagging</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Named Entity Recognition</td><td>Basic</td><td>Advanced with pre-trained models</td></tr>
+        <tr><td>Lemmatization</td><td>Yes</td><td>Yes (via pre-trained models)</td></tr>
+        <tr><td>Deep Learning Support</td><td>Limited</td><td>Excellent (integrates with DL models)</td></tr>
+        <tr><td>Language Models</td><td>Few pre-trained</td><td>Multiple pre-trained models</td></tr>
+        <tr><td>Visualization</td><td>Minimal</td><td>Built-in displacy for syntax and NER</td></tr>
+    </table>
+
+
+
+</div>
+
+<footer>
+    &copy; 2025 EduLearn. All rights reserved.
+</footer>
+
+</body>
+</html>
