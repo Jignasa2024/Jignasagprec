@@ -3,141 +3,792 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NLP Chapter 2 - Bag of Words</title>
+    <title>EduLearn - NLP Chapter 1: Introduction</title>
     <style>
         body {font-family: Arial, sans-serif; margin: 0; padding: 0;}
         header {background-color: #335c67; color: white; padding: 20px; text-align: center;}
-        .menu-toggle {display: none; font-size: 28px; cursor: pointer; color: white; padding: 14px;}
-        nav {background-color: #e09f3e; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; position: relative;}
-        .nav-links {display: flex; flex-wrap: wrap; justify-content: center; width: 100%;}
-        nav a {color: white; padding: 14px 20px; text-decoration: none; display: block; position: relative;}
+        nav {background-color: #e09f3e; display: flex; justify-content: center; flex-wrap: wrap;}
+        nav a {color: white; padding: 14px 20px; text-decoration: none; display: block;}
         nav a:hover {background-color: #9e2a2b;}
-        .dropdown {position: relative; display: inline-block;}
-        .dropdown-content {display: none; position: absolute; background-color: #e09f3e; min-width: 160px; z-index: 1;}
-        .dropdown-content a {display: block; padding: 12px 16px;}
-        .dropdown:hover .dropdown-content {display: block;}
-        .content {padding: 20px;}
-        footer {background-color: #540b0e; color: white; text-align: center; padding: 10px;}
-        table {border-collapse: collapse; width: 100%; margin-top: 20px;}
-        th, td {border: 1px solid #ddd; padding: 8px; text-align: left;}
-        th {background-color: #335c67; color: white;}
-        @media screen and (max-width: 600px) {
+        .content {padding: 20px; line-height: 1.6;}
+        h1, h2, h3 {color: #335c67;}
+        footer {background-color: #540b0e; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%;}
+	table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #335c67;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+@media screen and (max-width: 600px) {
             .nav-links {flex-direction: column; display: none; width: 100%;}
             nav a, .dropdown-content a {width: 100%; text-align: center;}
             .dropdown-content {position: static;}
             .menu-toggle {display: block;}
-            table, thead, tbody, th, td, tr {display: block; width: 100%;}
-            th {position: sticky; top: 0;}
         }
-
-.responsive-table {
-  overflow-x: auto;
-}
-
-.responsive-table th,
-.responsive-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-@media screen and (max-width: 600px) {
-  .responsive-table th,
-  .responsive-table td {
-    padding: 6px;
-    font-size: 14px;
-  }
-}
-
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Natural Language Processing - Chapter 2</h1>
-    <p>Bag of Words and TF-IDF</p>
+    <h1>EduLearn - NLP Chapter 1</h1>
+    <p>Introduction to Natural Language Processing</p>
 </header>
 
 <nav>
-    <span class="menu-toggle" onclick="toggleMenu()">&#9776;</span>
-    <div class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
-        <div class="dropdown">
-            <a href="#">Courses</a>
-            <div class="dropdown-content">
-                <a href="index.html">Natural Language Processing</a>
-            </div>
-        </div>
-        <a href="index.html">About</a>
-        <a href="contact.html">Contact</a>
-    </div>
+    <a href="home.html">Home</a>
+    <a href="nlp.html">Courses</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
 </nav>
 
 <div class="content">
-    <h2>Bag of Words (BoW)</h2>
-    <p>The Bag of Words model is one of the simplest and most widely used techniques to convert textual data into a numerical representation...</p>
-
+  <h2>Bag of Words (BoW)</h2>
+    <h3>Definition:</h3>
+    <p>The Bag of Words model is one of the simplest and most widely used techniques to convert textual data into a numerical representation. 
+    It converts a collection of text documents into a matrix of word counts or frequencies, enabling the application of machine learning algorithms on textual data. 
+    This model treats every text document as a bag (multiset) of its words, which captures the presence and count of words but not their sequence. 
+    It treats each document as a “bag” of its words, disregarding grammar and word order but preserving multiplicity (frequency) of words.</p>
+    
+    <h3>Working:</h3>
+    <ol>
+        <li><strong>Vocabulary Creation</strong>
+            <ul>
+                <li>Compile a list of all unique words that appear across the entire corpus (collection of documents).</li>
+                <li>This forms the vocabulary for encoding documents.</li>
+            </ul>
+        </li>
+        <li><strong>Vector Representation</strong>
+            <ul>
+                <li>Each document is transformed into a fixed-length vector, where:</li>
+                <ul>
+                    <li>Each dimension corresponds to a word in the vocabulary.</li>
+                    <li>The value represents the frequency (count) of the word in the respective document.</li>
+                </ul>
+            </ul>
+        </li>
+    </ol>
+    
     <h3>Example:</h3>
     <p>Let’s say we have two documents:</p>
     <ul>
         <li>Doc1: “NLP is fun”</li>
         <li>Doc2: “NLP is powerful”</li>
     </ul>
+    <p>Vocabulary = [“NLP”, “is”, “fun”, “powerful”]</p>
+    
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Word</th>
+            <th>Doc1</th>
+            <th>Doc2</th>
+        </tr>
+        <tr>
+            <td>NLP</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>is</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>fun</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>powerful</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+    </table>
+    
+    <p>So:</p>
+    <ul>
+        <li>Doc1 = [1, 1, 1, 0]</li>
+        <li>Doc2 = [1, 1, 0, 1]</li>
+    </ul>
 
-<div style="overflow-x:auto;">
-  <table class="responsive-table">
-    <thead>
-      <tr>
-        <th>Word</th>
-        <th>Doc1</th>
-        <th>Doc2</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>NLP</td>
-        <td>1</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>is</td>
-        <td>1</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>fun</td>
-        <td>1</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>powerful</td>
-        <td>0</td>
-        <td>1</td>
-      </tr>
-    </tbody>
-  </table>
+
+
+    <h3>Advantages:</h3>
+    <ul>
+      <li>Simplicity: Easy to understand, implement, and interpret.</li>
+      <li>Computationally Efficient: Suitable for small datasets and quick experimentation.</li>
+      <li>Baseline Performance: Often performs reasonably well as a baseline for classification tasks like spam detection, topic classification, etc.</li>
+    </ul>
+
+    <h3>Disadvantages:</h3>
+    <ul>
+      <li>Ignores Word Order: Important syntactic and semantic information is lost because the sequence of words is not considered.</li>
+      <li>Context Insensitivity: Cannot differentiate between words used in different contexts or handle polysemy (multiple meanings of a word).</li>
+      <li>Vocabulary Explosion: With larger corpora, the vocabulary grows significantly, leading to high-dimensional feature spaces, which can make models prone to overfitting and computationally expensive.</li>
+      <li>Equal Weightage: All words are treated with equal importance, regardless of their informativeness or relevance.</li>
+    </ul>
+
+    <h3>Applications of BoW:</h3>
+    <ul>
+      <li>Text Classification: Spam detection, sentiment analysis.</li>
+      <li>Information Retrieval: Search engines use similar vector space models.</li>
+      <li>Topic Modeling: Preprocessing for clustering or topic identification.</li>
+    </ul>
+
+
+
+  <h2>Python Example: BoW using CountVectorizer</h2>
+  <pre><code>from sklearn.feature_extraction.text import CountVectorizer
+
+# Sample documents
+documents = [
+    "NLP is fun",
+    "NLP is powerful"
+]
+
+# Initialize CountVectorizer
+vectorizer = CountVectorizer()
+
+# Fit and transform the documents
+X = vectorizer.fit_transform(documents)
+
+# Display the vocabulary
+print("Vocabulary:", vectorizer.vocabulary_)
+
+# Display the feature names
+print("Feature Names:", vectorizer.get_feature_names_out())
+
+# Convert the matrix to an array for better readability
+print("Document-Term Matrix:\n", X.toarray())</code></pre>
+
+  <h3>Output:</h3>
+  <pre><code>Vocabulary: {'nlp': 2, 'is': 1, 'fun': 0, 'powerful': 3}
+Feature Names: ['fun' 'is' 'nlp' 'powerful']
+Document-Term Matrix:
+ [[1 1 1 0]
+ [0 1 1 1]]</code></pre>
+
+
+
+<h2>TF-IDF (Term Frequency – Inverse Document Frequency)</h2>
+<p>TF-IDF is a weighting scheme that reflects how important a word is to a document in a collection of documents (corpus).<br>
+It balances:</p>
+<ul>
+  <li><strong>Term Frequency (TF):</strong> How often a term appears in a document.</li>
+  <li><strong>Inverse Document Frequency (IDF):</strong> How rare the term is across all documents.</li>
+</ul>
+<p>This weighting scheme is widely used in Information Retrieval (IR), text mining, and Natural Language Processing (NLP) tasks like document classification and keyword extraction.</p>
+
+<h3>Formula:</h3>
+<pre>TF-IDF(t,d) = TF(t,d) × log(N / DF(t))</pre>
+<ul>
+  <li><strong>TF(t, d)</strong> = frequency of term t in document d</li>
+  <li><strong>N</strong> = total number of documents</li>
+  <li><strong>DF(t)</strong> = number of documents containing term t</li>
+</ul>
+
+<h3>Term Frequency (TF):</h3>
+<p>Measures how often a word appears in a document. A higher frequency suggests greater importance. If a term appears frequently in a document, it is likely relevant to the document’s content.</p>
+<p><strong>Formula:</strong><br>
+TF(t,d) = (The number of times the term t appears in document d) / (The Total number of terms in document d)</p>
+
+<h3>Example:</h3>
+<p>Assume 3 documents:</p>
+<ul>
+  <li>Doc1: "NLP is fun"</li>
+  <li>Doc2: "NLP is powerful"</li>
+  <li>Doc3: "NLP is fun and powerful"</li>
+</ul>
+<p>Term Frequency for <code>fun</code> is = 1 / 3 = 0.167</p>
+
+<h3>Limitations of TF Alone:</h3>
+<ul>
+  <li>TF does not account for the global importance of a term across the entire corpus.</li>
+  <li>Common words like "the" or "and" may have high TF scores but are not meaningful in distinguishing documents.</li>
+</ul>
+
+
+
+  <h3>Inverse Document Frequency (IDF)</h3>
+  <p>
+    Reduces the weight of common words across multiple documents while increasing the weight of rare words.
+    If a term appears in fewer documents, it is more likely to be meaningful and specific.
+  </p>
+  <h4>Formula:</h4>
+  <p><code>IDF(t, D) = log((The total number of documents in corpus D) / (The number of documents containing the term t))</code></p>
+  <ul>
+    <li>The logarithm is used to dampen the effect of very large or very small values, ensuring the IDF score scales appropriately.</li>
+    <li>It also helps balance the impact of terms that appear in extremely few or extremely many documents.</li>
+  </ul>
+  <h4>Limitations of IDF Alone:</h4>
+  <ul>
+    <li>IDF does not consider how often a term appears within a specific document.</li>
+    <li>A term might be rare across the corpus (high IDF) but irrelevant in a specific document (low TF).</li>
+  </ul>
+  <h4>Example:</h4>
+  <p>Assume 3 documents:</p>
+  <ul>
+    <li>Doc1: "NLP is fun"</li>
+    <li>Doc2: "NLP is powerful"</li>
+    <li>Doc3: "NLP is fun and powerful"</li>
+  </ul>
+  <h4>Step 1: Calculate Term Frequency (TF)</h4>
+  <p>For Document 1: "fun" appears 1 time out of 3 → TF = 1/3</p>
+  <p>For Document 2: "fun" = 0</p>
+  <p>For Document 3: "fun" appears 1 time out of 5 → TF = 1/5</p>
+  <p>TF for "fun":</p>
+  <ul>
+    <li>Doc1 = 0.333</li>
+    <li>Doc2 = 0</li>
+    <li>Doc3 = 0.2</li>
+  </ul>
+  <h4>Step 2: Calculate Inverse Document Frequency (IDF)</h4>
+  <p>Total documents = 3; Documents with "fun" = 2 → IDF = log(3/2) ≈ 0.176</p>
+  <h4>Step 3: Calculate TF-IDF</h4>
+  <p><code>TF-IDF(t,d) = TF(t,d) × log(N / DF(t))</code></p>
+  <ul>
+    <li>Doc1: 0.167 × 0.333 = 0.0556</li>
+    <li>Doc2: 0 × 0.333 = 0</li>
+    <li>Doc3: 0.167 × 0.333 = 0.0556</li>
+  </ul>
+  <p>
+    "NLP" appears in all documents → low IDF<br>
+    "fun" appears only in Doc1 & Doc3 → higher IDF
+  </p>
+  <h4>Advantages:</h4>
+  <ul>
+    <li>More accurate than BoW for feature representation</li>
+    <li>Penalizes common, non-informative terms</li>
+    <li>Good balance of simplicity and performance</li>
+  </ul>
+  <h4>Disadvantages:</h4>
+  <ul>
+    <li>Still ignores word order and semantics</li>
+    <li>Sparse and high-dimensional representation</li>
+    <li>Cannot capture meaning or context across sentences</li>
+  </ul>
+
+
+
+<h3>Example: TF-IDF using Scikit-learn</h3>
+<pre><code>from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
+
+# Sample documents
+documents = [
+    "NLP is fun",
+    "NLP is powerful",
+    "NLP is fun and powerful"
+]
+
+# Initialize the TF-IDF Vectorizer
+tfidf_vectorizer = TfidfVectorizer()
+
+# Fit and transform the documents
+tfidf_matrix = tfidf_vectorizer.fit_transform(documents)
+
+# Get feature names (vocabulary)
+feature_names = tfidf_vectorizer.get_feature_names_out()
+print("Vocabulary (Features):", feature_names)
+
+# Convert the TF-IDF matrix to a dense array and display as a DataFrame
+tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=feature_names)
+print("\nTF-IDF Matrix:")
+print(tfidf_df)</code></pre>
+<h4>Output:</h4>
+<pre><code>Vocabulary (Features): ['and' 'fun' 'is' 'nlp' 'powerful']
+TF-IDF Matrix:
+         and     fun       is        nlp      powerful
+0  0.000000  0.673255  0.522842  0.522842  0.000000
+1  0.000000  0.000000  0.522842  0.522842  0.673255
+2  0.591887  0.450145  0.349578  0.349578  0.450145</code></pre>
+
+
+<h2 class="section-title">Language Modeling: Unigrams, Bigrams, and N-gram Models</h2>
+<p><strong>What is Language Modeling?</strong></p>
+<p>
+            A language model in natural language processing (NLP) is a statistical or machine learning model that is used to predict the next word in a sequence given the previous words. Language models play a crucial role in various NLP tasks such as machine translation, speech recognition, text generation, and sentiment analysis. They analyze and understand the structure and use of human language, enabling machines to process and generate text that is contextually appropriate and coherent.
+        </p>
+<p>
+            Language Modeling (LM) is a core task in Natural Language Processing (NLP) that involves assigning probabilities to sequences of words. The goal is to predict the likelihood of a given word sequence, which is crucial for applications like:
+        </p>
+<ul>
+<li>Machine Translation: Language Modeling helps improve the accuracy and fluency of machine translation systems by generating contextually appropriate translations.</li>
+<li>Text Generation: Language Modeling enables the generation of coherent and contextually accurate text, which is useful in content creation, chatbot responses, and automatic report writing.</li>
+<li>Speech Recognition: Language Modeling aids in accurate speech recognition by predicting the most likely sequence of words given the audio input.</li>
+<li>Question Answering: Language Modeling can be used to build question answering systems that understand natural language queries and provide relevant answers.</li>
+<li>Named Entity Recognition: Language Modeling can assist in identifying and classifying named entities (e.g., person names, locations, organizations) within a text.</li>
+<li>Spelling &amp; Grammar Correction: Identifying and fixing errors.</li>
+<li>Autocomplete/Next Word Prediction: Suggesting the next word as a user types.</li>
+</ul>
+<p>
+            Formally, given a sequence of words w1,w2,...,wn, the language model estimates:<br/>
+            P(w1,w2,...,wn)
+        </p>
+<p>
+            Or for a generative model (using the chain rule):<br/>
+            P(w1)⋅P(w2∣w1)⋅P(w3∣w1,w2)⋯P(wn∣w1,...,wn−1)
+        </p>
+<p>
+            However, computing these full probabilities is computationally intractable due to the curse of dimensionality. Hence, we use the N-gram approximation.
+        </p>
+
+
+
+
+  <h2>N-gram Models</h2>
+  <p>N-gram models predict the probability of a word given the previous n−1 words. For example, a trigram model uses the preceding two words to predict the next word:</p>
+  <p><strong>Goal:</strong> Calculate <code>p(w∣h)</code>, the probability that the next word is <code>w</code>, given context/history <code>h</code>.</p>
+  <p><strong>Example:</strong> For the phrase: “This article is on…”, if we want to predict the likelihood of “NLP” as the next word:<br>
+  <code>p("NLP"∣"This","article","is","on")</code></p>
+  <h3>Chain Rule of Probability</h3>
+  <p>The probability of a sequence of words is computed as:<br>
+  <code>P(w1,w2,…,wn)= ∏<sub>i=1</sub><sup>n</sup> P(wi∣w1,w2,…,wi-1)</code></p>
+  <h3>Markov Assumption</h3>
+  <p>To reduce complexity, N-gram models assume the probability of a word depends only on the previous n−1 words:<br>
+  <code>P(wi∣w1,…,wi−1)≈P(wi∣wi−(n−1),…,wi−1)</code></p>
+  <p>N-gram models are simple, easy to implement, and computationally efficient, making them suitable for applications with limited computational resources. However, they have significant limitations. They struggle with capturing long-range dependencies due to their limited context window. As <code>n</code> increases, the number of possible n-grams grows exponentially, leading to sparsity issues where many sequences are never observed in the training data. This sparsity makes it difficult to accurately estimate the probabilities of less common sequences.</p>
+
+
+
+
+
+<h2 class="title is-4 has-text-primary">Unigram Model</h2>
+<p>In the Unigram Model, each word is assumed to be independent of any other word:</p>
+<pre>P(w1,w2,...,wn)=∏_(i=1)^n▒〖P(wi)〗</pre>
+<p><strong>Example:</strong><br/>
+    Sentence: “I love NLP”<br/>
+    Probability: P(I)⋅P(love)⋅P(NLP)</p>
+<p><strong>Use:</strong><br/>
+    • Baseline models<br/>
+    • Text classification with Naive Bayes</p>
+<p><strong>Limitation:</strong><br/>
+    • Ignores word order and context completely</p>
+<h2 class="title is-4 has-text-primary">Bigram Model</h2>
+<p><strong>Definition:</strong><br/>
+    In a Bigram Model, the probability of a word depends only on the immediately previous word:</p>
+<pre>P(wn∣wn−1) = (Count(wn-1,wn)) / (Count(wn-1))</pre>
+<p><strong>Example:</strong><br/>
+    Sentence: “I love NLP”<br/>
+    Probability: P(I)⋅P(love∣I)⋅P(NLP∣love)</p>
+<p><strong>Use:</strong><br/>
+    • Captures basic word dependencies<br/>
+    • Used in predictive text and speech recognition</p>
+<p><strong>Limitation:</strong><br/>
+    • Only captures local dependencies; misses longer relationships.</p>
+<h2 class="title is-4 has-text-primary">Trigram Model</h2>
+<p><strong>Definition:</strong><br/>
+    In a Trigram Model, the probability of a word depends only on the immediately previous two words:</p>
+<pre>P(wn∣wn−2,wn−1) = (Count(wn-2,wn-1,wn)) / (Count(wn-2,wn-1))</pre>
+<p><strong>Example (Trigram):</strong><br/>
+    Sentence: “I love natural language processing”<br/>
+    Probability: P(I)⋅P(love∣I)⋅P(natural∣I,love)⋅P(language∣love,natural)⋅P(processing∣natural,language)</p>
+<p><strong>Use:</strong><br/>
+    • Improves prediction accuracy<br/>
+    • Common in traditional NLP systems</p>
+<p><strong>Limitation:</strong><br/>
+    • Data sparsity: Higher N leads to many unseen word combinations<br/>
+    • Requires smoothing techniques (e.g., Laplace, Kneser-Ney)</p>
+
+
+
+<h2>Example:</h2>
+<pre><code>import nltk
+nltk.download('punkt')
+
+from nltk import ngrams
+from nltk.tokenize import word_tokenize
+
+# Example sentence
+sentence = "N-grams enhance language processing tasks."
+# Tokenize the sentence
+tokens = word_tokenize(sentence)
+# Generate bigrams
+bigrams = list(ngrams(tokens, 2))
+# Generate trigrams
+trigrams = list(ngrams(tokens, 3))
+# Print the results
+print("Bigrams:", bigrams)
+print("Trigrams:", trigrams)</code></pre>
+<h3>Output:</h3>
+<pre><code>Bigrams: [('N-grams', 'enhance'), ('enhance', 'language'), ('language', 'processing'), ('processing', 'tasks'), ('tasks', '.')]
+Trigrams: [('N-grams', 'enhance', 'language'), ('enhance', 'language', 'processing'), ('language', 'processing', 'tasks'), ('processing', 'tasks', '.')]</code></pre>
+<h2>Word Embeddings and Similarity Measures</h2>
+<p>In Natural Language Processing (NLP), converting words into vectors - commonly referred to as word embeddings - is fundamental. These embeddings serve as the foundation for numerous NLP applications, enabling computers to understand and interpret human language.</p>
+<img src="images/wordEmbeddings.png" alt="Cosine Similarity" width="600" height="300" style="vertical-align:middle">
+<p>Word embeddings are numerical vector representations of words in a high-dimensional space that capture their semantic and syntactic relationships. Unlike sparse models like Bag-of-Words or TF-IDF, embeddings are dense, meaning they reduce dimensionality while preserving meaning.</p>
+<h3>Word Embeddings Overview</h3>
+<ul>
+<li>Each word is mapped to a vector of real numbers (e.g., 100–300 dimensions)</li>
+<li>Words with similar meanings are placed close together in the vector space</li>
+<li>Enable algebraic operations such as:<br/>
+<code>vec("king") − vec("man") + vec("woman") ≈ vec("queen")</code></li>
+</ul>
+
+
+
+
+
+<h2>Word2Vec</h2>
+    <h3>Definition:</h3>
+    <p>
+        Word2Vec is a prediction-based model developed by Google that learns word embeddings using shallow neural networks. 
+        Word2Vec is a neural approach for generating word embeddings. It belongs to the family of neural word embedding techniques and 
+        specifically falls under the category of distributed representation models. It is a popular technique in natural language processing (NLP).
+    </p>
+    <ul>
+        <li>Represent words as continuous vector spaces.</li>
+        <li>Aim: Capture the semantic relationships between words by mapping them to high-dimensional vectors.</li>
+        <li>Words with similar meanings should have similar vector representations. Every word is assigned a vector.</li>
+    </ul>
+    <p>There are two neural embedding methods for Word2Vec: Continuous Bag of Words (CBOW) and Skip-gram.</p>
+    <h3>Approaches:</h3>
+    <ul>
+        <li><strong>CBOW (Continuous Bag of Words):</strong> Predicts a target word from surrounding context words</li>
+        <li><strong>Skip-Gram:</strong> Predicts context words from a target word</li>
+    </ul>
+    <h3>Continuous Bag of Words (CBOW)</h3>
+    <p>
+        Continuous Bag of Words (CBOW) is a type of neural network architecture used in the Word2Vec model. 
+        The primary objective of CBOW is to predict a target word based on its context, which consists of the surrounding words 
+        in a given window. Given a sequence of words in a context window, the model is trained to predict the target word at the center of the window.
+    </p>
+    <ul>
+        <li>Feedforward neural network with a single hidden layer.</li>
+        <li>The input layer, hidden layer, and output layer represent the context words, learned continuous vectors or embeddings, and the target word.</li>
+        <li>Useful for learning distributed representations of words in a continuous vector space.</li>
+    </ul>
+<img src="images/CBOW.png" alt="Cosine Similarity" width="500" height="300" style="vertical-align:middle">
+    <p>
+        The hidden layer contains the continuous vector representations (word embeddings) of the input words.
+        The weights between the input layer and the hidden layer are learned during training.
+        The dimensionality of the hidden layer represents the size of the word embeddings (the continuous vector space).
+    </p>
+
+
+<h2>Skip-Gram</h2>
+<p>
+The Skip-Gram model learns distributed representations of words in a continuous vector space. The main objective of Skip-Gram is to predict context words (words surrounding a target word) given a target word. This is the opposite of the Continuous Bag of Words (CBOW) model, where the objective is to predict the target word based on its context. It is shown that this method produces more meaningful embeddings.
+</p>
+<img src="images/skipGram.png" alt="Cosine Similarity" width="500" height="300" style="vertical-align:middle">
+<ul>
+<li>Output: Trained vectors of each word after many iterations through the corpus.</li>
+<li>Preserve syntactical or semantic information, Converted to lower dimensions.</li>
+<li>Similar meaning (semantic info) vectors are placed close to each other in space.</li>
+<li><code>vector_size</code> parameter controls the dimensionality of the word vectors, and you can adjust other parameters such as <code>window</code>.</li>
+</ul>
+<p>The choice between CBOW and Skip-gram depends on data and the task.</p>
+<ul>
+<li>CBOW might be preferred when training resources are limited, and capturing syntactic information is important.</li>
+<li>Skip-gram is chosen when semantic relationships and the representation of rare words are important.</li>
+</ul>
+<p><strong>Example:</strong><br>
+Sentence: “I enjoy natural language processing.”</p>
+<ul>
+<li><strong>CBOW:</strong> Context → Target<br>(Input: “I”, “natural”, “language” → Predict: “enjoy”)</li>
+<li><strong>Skip-Gram:</strong> Target → Context<br>(Input: “enjoy” → Predict: “I”, “natural”, “language”)</li>
+</ul>
+<h3>Properties:</h3>
+<ul>
+<li>Captures semantic relationships</li>
+<li>Efficient training using negative sampling</li>
+</ul>
+
+
+
+
+<h2>Example:</h2>
+<pre><code>from gensim.models import Word2Vec
+
+# Sample data
+sentences = [
+    ['this', 'is', 'the', 'first', 'document'],
+    ['this', 'document', 'is', 'the', 'second', 'document'],
+    ['and', 'this', 'is', 'the', 'third', 'one'],
+    ['is', 'this', 'the', 'first', 'document']
+]
+
+# Initialize the Word2Vec model
+model = Word2Vec(sentences, vector_size=100, window=5, min_count=1, workers=4)
+
+# Train the model
+model.train(sentences, total_examples=len(sentences), epochs=10)
+
+# Get vector for a word
+print(model.wv['document'])
+</code></pre>
+<h2>GloVe (Global Vectors for Word Representation)</h2>
+<p><strong>Definition:</strong> GloVe (Global Vectors for Word Representation) is an unsupervised learning algorithm designed to generate dense vector representations also known as embeddings. Its primary objective is to capture semantic relationships between words by analyzing their co-occurrence patterns in a large text corpus.</p>
+<p>GloVe is a count-based model developed at Stanford that uses global co-occurrence statistics of words.</p>
+<p>Xij=Number of times word j appears in the context of i</p>
+<p>It constructs a word-word co-occurrence matrix and factorizes it to learn vector representations.</p>
+<p>The creation of a word co-occurrence matrix is the fundamental component of GloVe. This matrix provides a quantitative measure of the semantic affinity between words by capturing the frequency with which they appear together in a given context. Further, by minimising the difference between the dot product of vectors and the pointwise mutual information of corresponding words, GloVe optimises word vectors. It is able to produce dense vector representations that capture syntactic and semantic relationships.</p>
+<p><strong>Let's see how the matrix is created. Corpus:</strong></p>
+<pre><code>It is a nice evening.
+Good Evening!
+Is it a nice evening?</code></pre>
+<pre><code>	it	is	a	nice	evening	good
+it	0					
+is	1+1	0	 	 	 	 
+a	1/2+1	1+1/2	0	 	 	 
+nice	1/3+1/2	1/2+1/3	1+1	0	 	 
+evening	1/4+1/3	1/3+1/4	1/2+1/2	1+1	0	 
+good	0	0	0	0	1	0</code></pre>
+<p>The upper half of the matrix will be a reflection of the lower half. We can consider a window frame as well to calculate the co-occurrences by shifting the frame till the end of the corpus. This helps gather information about the context in which the word is used.</p>
+<ul>
+<li>Vectors for each word is assigned randomly.</li>
+<li>Take two pairs of vectors and see closeness in space.</li>
+<li>If they occur together more often or have a higher value in the co-occurrence matrix and are far apart in space then they are brought close to each other.</li>
+<li>If they are close to each other but are rarely or not frequently used together then they are moved further apart in space.</li>
+<li>Output: Vector space representation that approximates the information from the co-occurrence matrix.</li>
+</ul>
+
+
+
+<h2>Example:</h2>
+<pre><code>• If “king” and “queen” appear in similar contexts, GloVe will place them close in vector space.</code></pre>
+<h2>Example:</h2>
+<pre><code>import gensim.downloader as api
+
+# Download pre-trained GloVe model (choose the size you need - 50, 100, 200, or 300 dimensions)
+glove_vectors = api.load("glove-wiki-gigaword-100")  # Example: 100-dimensional GloVe
+
+# Get word vectors (embeddings)
+word1 = "king"
+word2 = "queen"
+vector1 = glove_vectors[word1]
+vector2 = glove_vectors[word2]
+
+# Compute cosine similarity between the two word vectors
+similarity = glove_vectors.similarity(word1, word2)
+
+print(f"Word vectors for '{word1}': {vector1}")
+print(f"Word vectors for '{word2}': {vector2}")
+print(f"Cosine similarity between '{word1}' and '{word2}': {similarity}")
+</code></pre>
+<h3>Advantages:</h3>
+<ul>
+<li>Captures both global statistics and local context</li>
+<li>Faster than training large neural networks</li>
+</ul>
+<h2>FastText</h2>
+<h3>Definition:</h3>
+<p>FastText is an extension of Word2Vec developed by Facebook. It treats each word as a bag of character n-grams, which helps capture morphology.</p>
+<p>For example, the word “apple” with n=3 is represented as:</p>
+<ul>
+<li>&lt;ap, app, ppl, ple, le&gt;</li>
+</ul>
+<h3>Advantages:</h3>
+<ul>
+<li>Learns better embeddings for rare and out-of-vocabulary (OOV) words: By utilizing subword information, FastText can generate meaningful representations for rare words or words not seen during training. This is particularly useful for morphologically rich languages (e.g., agglutinative languages) and in situations where the vocabulary is constantly evolving.</li>
+<li>Useful for morphologically rich languages</li>
+</ul>
+<p>Example:</p>
+<p>Even if the word “playfulness” is rare, it can still be embedded effectively using its subword components: "play", "ful", "ness".</p>
+<h3>Example:</h3>
+<pre><code>from gensim.models import FastText
+
+# Sample data
+sentences = [
+    ['this', 'is', 'the', 'first', 'document'],
+    ['this', 'document', 'is', 'the', 'second', 'document'],
+    ['and', 'this', 'is', 'the', 'third', 'one'],
+    ['is', 'this', 'the', 'first', 'document']
+]
+
+# Initialize the FastText model
+model = FastText(sentences, vector_size=100, window=5, min_count=1, workers=4)
+
+# Train the model
+model.train(sentences, total_examples=len(sentences), epochs=10)
+
+# Get vector for a word
+print(model.wv['document'])
+</code></pre>
+
+
+
+<h2>Cosine Similarity and Distance Measures</h2>
+
+<h3>Cosine Similarity:</h3>
+<p>
+Measures the angle between two vectors. Ranges from -1 (opposite) to 1 (same direction). It is scale-invariant, making it ideal for measuring word similarity.
+</p>
+<p>
+<strong>Cosine Similarity = (A⋅B) / (||A|| ⋅ ||B||)</strong><br>
+Where:<br>
+A⋅B is the dot product of the vectors<br>
+||A|| and ||B|| are magnitudes
+</p>
+<p>
+Cosine similarity ranges from -1 to 1. A cosine similarity of 1 means the vectors are perfectly aligned (no angle between them), indicating maximum similarity, whereas a value of -1 implies they are diametrically opposite, reflecting maximum dissimilarity. Values near zero indicate orthogonality.
+</p>
+
+<h3>Calculating and Visualizing Cosine Distance</h3>
+<p>
+Let’s take an example with two vectors: Vector A (2,4) and Vector B (4,2), and calculate their cosine distance:
+</p>
+<ol>
+<li>Calculate the dot product of A and B:<br>
+A · B = (2 × 4) + (4 × 2) = 8 + 8 = 16</li>
+
+<li>Calculate the magnitudes of A and B:<br>
+||A|| = √(2² + 4²) = √20<br>
+||B|| = √(4² + 2²) = √20</li>
+
+<li>Divide the dot product by the product of the magnitudes:<br>
+( A · B ) / ( ||A|| × ||B|| ) = 16 / (√20 × √20) = 16 / 20 = 0.8</li>
+
+<li>Calculate the cosine distance:<br>
+<strong>Cosine Distance = 1 - 0.8 = 0.2</strong></li>
+</ol>
+
+<p>
+With a cosine distance of 0.2, the result falls quite low on the 0 to 2 scale. This suggests that vectors A and B are quite similar in terms of the direction they point to.
+</p>
+<img src="images/cosineSimilarity.png" alt="Cosine Similarity" width="400" height="400" style="vertical-align:middle">
+<h4>In this representation:</h4>
+<ul>
+<li>Vector A is (2, 4)</li>
+<li>Vector B is (4, 2)</li>
+<li>θ is the angle between A and B</li>
+</ul>
+
+<p>
+The cosine similarity (0.8) represents the cosine of angle θ. As the vectors are close in direction, the angle is small, resulting in a high cosine similarity and a low cosine distance (0.2).
+</p>
+
+<p>
+Because cosine distance can also be defined as 1 - cos(θ), where cos(θ) is the cosine similarity, this implies:
+<ul>
+<li>When vectors are identical in direction (θ = 0°), cos(θ) = 1, so cosine distance = 0</li>
+<li>When vectors are perpendicular (θ = 90°), cos(θ) = 0, so cosine distance = 1</li>
+<li>When vectors are opposite (θ = 180°), cos(θ) = -1, so cosine distance = 2</li>
+</ul>
+</p>
+
+<h3>Cosine Distance Formula</h3>
+<p>
+Cosine distance measures the dissimilarity between two vectors by calculating the cosine of the angle between them. It can be defined as one minus cosine similarity:
+</p>
+<p><strong>Cosine Distance = 1 - Cosine Similarity</strong></p>
+
+<h3>Example:</h3>
+<p>
+cosine_similarity("doctor", "nurse") ≈ 0.8<br>
+cosine_similarity("doctor", "banana") ≈ 0.1
+</p>
+
+
+
+
+
+<h2>Applications of Cosine Distance</h2>
+<p>Let’s take a look at some of the important applications.</p>
+<ul>
+<li><strong>Natural language processing (NLP):</strong> Cosine distance plays a crucial role in various natural language processing tasks by effectively measuring semantic relationships between text representations such as word2vec.</li>
+<li><strong>Document classification and similarity:</strong> In document classification, cosine distance measures content similarity by comparing the angles between document vectors. Each document is converted into a vector, with dimensions reflecting TF-IDF scores of words.</li>
+<li><strong>Clustering and semantic grouping:</strong> Cosine distance excels in clustering tasks like K-means clustering, grouping semantically related documents even if they don't use the same words. This technique is often used in unsupervised learning to discover natural groupings within document sets.</li>
+<li><strong>Information retrieval and search engines:</strong> Cosine distance matches search queries to documents by vector comparison, ranking those with the smallest distances highest for relevance.</li>
+<li><strong>Word embeddings and word similarity:</strong> Cosine distance is vital in word embeddings like Word2Vec or GloVe. These embeddings capture semantic meaning such that words with similar meanings are embedded close together in the vector space.</li>
+<li><strong>Image recognition:</strong> In image recognition, cosine distance compares feature vectors extracted from images, boosting both the accuracy and effectiveness of image-based systems.</li>
+<li><strong>Recommender systems:</strong> Cosine distance pairs users with movies or products that align with their past likes by examining the closeness in vector space.</li>
+</ul>
+<h2>Euclidean Distance</h2>
+<p>Measures the straight-line distance between two vectors. Less commonly used for word embeddings due to scale sensitivity.</p>
+
+
+
+<h2>Evaluation Metrics in NLP: Accuracy, Precision, Recall, F1 Score</h2>
+<p>In NLP and other machine learning tasks, especially in classification problems (e.g., spam detection, sentiment analysis), it is critical to evaluate model performance using appropriate metrics. The most commonly used metrics are:</p>
+<ul>
+<li>Accuracy</li>
+<li>Precision</li>
+<li>Recall</li>
+<li>F1 Score</li>
+</ul>
+<p>These metrics are derived from the confusion matrix, which breaks down predictions into:</p>
+<table border="1">
+<tr><th></th><th>Predicted Positive</th><th>Predicted Negative</th></tr>
+<tr><th>Actual Positive</th><td>True Positive (TP)</td><td>False Negative (FN)</td></tr>
+<tr><th>Actual Negative</th><td>False Positive (FP)</td><td>True Negative (TN)</td></tr>
+</table>
+<h3>1. Accuracy</h3>
+<p><strong>Definition:</strong><br/>Accuracy is the ratio of correct predictions to the total number of predictions.</p>
+<pre>Accuracy = (TP + TN) / (TP + TN + FP + FN)</pre>
+<p><strong>Useful When:</strong> The dataset is balanced<br/><strong>Not Reliable When:</strong> The dataset is imbalanced (e.g., 95% non-spam, 5% spam → predicting “non-spam” always gives 95% accuracy)</p>
+<h3>2. Precision</h3>
+<p><strong>Definition:</strong><br/>Precision is the ratio of correctly predicted positives to the total predicted positives.</p>
+<pre>Precision = TP / (TP + FP)</pre>
+<p><strong>Interpretation:</strong> Out of all documents predicted as “positive” (e.g., spam), how many were truly spam?<br/><strong>Useful When:</strong> False positives are costly (e.g., marking important emails as spam)</p>
+<h3>3. Recall (Sensitivity)</h3>
+<p><strong>Definition:</strong><br/>Recall is the ratio of correctly predicted positives to the total actual positives.</p>
+<pre>Recall = TP / (TP + FN)</pre>
+<p><strong>Interpretation:</strong> Out of all actual spam emails, how many were correctly identified?<br/><strong>Useful When:</strong> False negatives are costly (e.g., missing spam or failing to detect hate speech)</p>
+<h3>4. F1 Score</h3>
+<p><strong>Definition:</strong><br/>F1 score is the harmonic mean of precision and recall, balancing both in one metric.</p>
+<pre>F1 Score = 2 × (Precision × Recall) / (Precision + Recall)</pre>
+<p><strong>Useful When:</strong> You want a single score that balances false positives and false negatives<br/>The dataset is imbalanced</p>
+
+
+<h2>Example:</h2>
+<p>Assume a sentiment classifier is tested on 100 reviews:</p>
+<ul>
+<li>70 are positive, 30 are negative</li>
+<li>Model predicts 80 as positive, 20 as negative</li>
+<li>Of the 80 predicted positives, 60 are actually positive (TP = 60, FP = 20)</li>
+<li>Of the 20 predicted negatives, 10 are actually positive (FN = 10, TN = 10)</li>
+</ul>
+<table border="1">
+<tr><th>Metric</th><th>Formula</th><th>Result (%)</th></tr>
+<tr><td>Accuracy</td><td>(TP + TN) / Total</td><td>(60+10)/100 = 70%</td></tr>
+<tr><td>Precision</td><td>TP / (TP + FP)</td><td>60 / 80 = 75%</td></tr>
+<tr><td>Recall</td><td>TP / (TP + FN)</td><td>60 / 70 = 85.7%</td></tr>
+<tr><td>F1 Score</td><td>2 × (P × R) / (P + R)</td><td>≈ 80.1%</td></tr>
+</table>
+<h3>Summary Table</h3>
+<table border="1">
+<tr><th>Metric</th><th>Best When</th><th>Key Strength</th><th>Formula</th></tr>
+<tr><td>Accuracy</td><td>Balanced data</td><td>Overall correctness</td><td>(TP + TN) / Total</td></tr>
+<tr><td>Precision</td><td>False positives are costly</td><td>Trust in positive predictions</td><td>TP / (TP + FP)</td></tr>
+<tr><td>Recall</td><td>False negatives are costly</td><td>Capturing all true positives</td><td>TP / (TP + FN)</td></tr>
+<tr><td>F1 Score</td><td>Balance needed</td><td>Compromise between P and R</td><td>2 × (P × R) / (P + R)</td></tr>
+</table>
+
+
+
+
+
+
+
+
+
 </div>
 
 
-
-
-
-
-
-</div>
 
 <footer>
     &copy; 2025 EduLearn. All rights reserved.
 </footer>
 
-<script>
-function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
-}
-</script>
-
 </body>
 </html>
-
